@@ -1,5 +1,4 @@
-# NLP_Ascend_workshop
-Natural Language Processing to identify substances related to overdose deaths: An R-tidymodels workshop
+# Natural Language Processing to identify substances related to overdose deaths: An R-tidymodels workshop
 
 This will be an interactive workshop introducing a natural language processing / machine learning workflow using R. We will specifically use the tidymodels framework for the analyses. We will be analyzing text data from medical examiners across the United States. We will develop a model to classify overdose deaths by type of substance involved. 
 
@@ -12,7 +11,7 @@ If you want to follow along with the code, please do the following before the wo
 5. Open the .rmd file
 6. Run the first chunk to install the required packages
 
-If this feels to onerus, you can also follow me along as we go (I struggle) through the code the day of the workshop.
+If this feels to onerous, you can also follow me along as (I struggle) we go through the code the day of the workshop.
 
 Thanks for taking the time to check out the repository and being present at the workshop. 
 
