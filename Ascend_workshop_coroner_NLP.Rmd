@@ -4,6 +4,7 @@ library(pacman)
 p_load(tidyverse, tidylog, purrr, forcats, colorspace, gtsummary, flextable, tictoc) #Basic
 p_load(textrecipes, tidytext, wordcloud) #Text processing helpers
 p_load(tidymodels, parsnip, discrim, naivebayes, ranger, xgboost, kknn, keras, workflowsets, themis, stacks, vip) #Models
+p_load(parallel, doMC)
 
 theme_set(theme_minimal()) #For ggplots
 
@@ -235,14 +236,13 @@ glove6b_matrix <- tidy(prep, 3) %>%
 ```
 
 ```{r Set up recipe}
-
 rec <- recipe(Outcome ~ text, data = training %>% select(Outcome, text)) %>%
   #update_role(Outcome, new_role = "outcome") %>%
   #update_role(text, new_role = "predictor") %>%
   step_tokenize(text,
                 options = list(lowercase = F,
                                strip_punct = TRUE)) %>%
-  step_tokenfilter(text, min_times = 1, max_times = Inf, max_tokens = 1000) %>%
+  step_tokenfilter(text, min_times = 1, max_times = Inf, max_tokens = Inf) %>%
   step_tfidf(text)
 
 prep <- prep(rec)
@@ -330,7 +330,7 @@ saveRDS(grid_results, "Output/grid_results.rds")
 ```
 
 ```{r Training Plots}
-grid_results <- readRDS("Output/grid_results.rds")
+#grid_results <- readRDS("Output/grid_results.rds")
 
 grid_results <- grid_results[-7,]
 
@@ -408,7 +408,7 @@ saveRDS(test_results, "Output/test_results.rds")
 ```
 
 ```{r Testing results}
-test_results <- readRDS("Output/test_results.rds")
+#test_results <- readRDS("Output/test_results.rds")
 
 #Testing results table long
 tbl.test <- test_results %>% collect_metrics()
